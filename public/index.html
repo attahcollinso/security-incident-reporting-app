@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Security Incident Reporting App
+    </title>
+
+    <link rel="stylesheet" href="css/style.css">
+    
+
+</head>
+
+<body>
+ 
+    <header class="hero">
+
+        <div class="overlay">
+
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/b/bc/Coat_of_arms_of_Nigeria.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original"
+                alt="Nigeria Coat of Arms"
+                class="coat"
+            >
+
+            <h1>
+                Security Incident Reporting System
+            </h1>
+
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg"
+                alt="Nigeria Flag"
+                class="flag"
+            >
+
+            <p class="quote">
+                “Peace and security begin when citizens choose integrity over crime.”
+            </p>
+
+            <div id="datetime"></div>
+
+            <div class="buttons">
+
+                <a href="reports.html">
+
+                    <button>
+                        Report Incident
+                    </button>
+
+                </a>
+
+                <a href="view.html">
+
+                    <button>
+                        View Reports
+                    </button>
+
+                </a>
+
+            </div>
+
+    </header>
+
+    <div>
+        <footer class="footer">
+
+            <p>
+             © 2026 Security Incident Reporting App |
+            Developed by Attah Collins | +2348037728338
+            </p>
+
+        </footer>
+    </div>
+
+    <script>
+
+        function updateDateTime() {
+
+            const now = new Date();
+
+            document.getElementById(
+                "datetime"
+            ).innerHTML =
+                now.toLocaleString();
+
+        }
+
+        setInterval(
+            updateDateTime,
+            1000
+        );
+
+        updateDateTime();
+
+    </script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

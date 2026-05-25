@@ -1,0 +1,194 @@
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f4f4f4;
+
+    padding: 0;
+
+}
+
+/*
+========================================
+HOME PAGE
+========================================
+*/
+
+.hero {
+
+    height: 90vh;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.6),
+            rgba(0,0,0,0.6)
+        ),
+        url("https://www.godaddy.com/resources/uk/wp-content/uploads/sites/6/interactions-with-clients-mobile.jpg?size=1920x0");
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    color: white;
+
+}
+
+.overlay {
+
+    padding: 20px;
+
+}
+
+.coat {
+
+    width: 100px;
+    /* height: auto; */
+
+    margin-top: 1px;
+
+    margin-bottom: 10px;
+
+}
+
+.flag {
+
+    width: 150px;
+
+    margin-top: 5px;
+
+}
+
+.quote {
+
+    font-size: 1.2rem;
+
+    margin-top: 20px;
+
+    font-style: italic;
+
+}
+
+#datetime {
+
+    margin-top: 20px;
+
+    font-size: 1.2rem;
+
+}
+
+/*
+========================================
+BUTTONS
+========================================
+*/
+
+button {
+
+    padding: 15px 25px;
+
+    margin: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: green;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 1rem;
+
+}
+
+button:hover {
+
+    background: darkgreen;
+
+}
+
+/*
+========================================
+FORM PAGE
+========================================
+*/
+
+.form-container,
+.view-container {
+
+    max-width: 800px;
+
+    margin: 40px auto;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+}
+
+input,
+textarea {
+
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 15px;
+
+    margin-bottom: 20px;
+
+}
+
+/*
+========================================
+CARDS
+========================================
+*/
+
+.card {
+
+    background: #f9f9f9;
+
+    padding: 20px;
+
+    margin-bottom: 20px;
+
+    border-left: 6px solid green;
+
+    border-radius: 10px;
+
+}
+
+/*
+========================================
+FOOTER
+========================================
+*/
+
+.footer {
+
+    text-align: center;
+
+    padding: 7px;
+
+    background: #111;
+
+    color: white;
+
+    margin-top: 0px;
+
+    font-size: 0.9rem;
+}

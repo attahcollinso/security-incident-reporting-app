@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Report Incident
+    </title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+    <div class="form-container">
+
+        <a href="index.html">
+            ← Back Home
+        </a>
+
+        <h1>
+            Report Security Incident
+        </h1>
+
+        <form id="incidentForm">
+
+            <input
+                type="text"
+                id="title"
+                placeholder="Incident Title"
+                required
+            >
+
+            <input
+                type="text"
+                id="location"
+                placeholder="Location"
+                required
+            >
+
+            <textarea
+                id="description"
+                placeholder="Describe the incident"
+                required
+            ></textarea>
+
+            <button type="submit">
+                Submit Report
+            </button>
+
+        </form>
+
+        <p id="message"></p>
+
+    </div>
+
+    <footer class="footer">
+
+        <p>
+            © 2026 Security Incident Reporting App |
+            Developed by Attah Collins +2348037728338
+        </p>
+
+    </footer>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
