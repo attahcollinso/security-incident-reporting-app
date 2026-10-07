@@ -12,40 +12,75 @@ const createIncident = (req, res) => {
     const {
         title,
         location,
-        description
+        description,
+        category,
+        severity
     } = req.body;
+
+    /*
+    ========================================
+    VALIDATION
+    ========================================
+    */
 
     if (
         !title ||
         !location ||
-        !description
+        !description ||
+        !category ||
+        !severity
     ) {
 
         return res.status(400).json({
-            error: "All fields are required"
+
+            error:
+                "All fields are required"
+
         });
 
     }
+
+    /*
+    ========================================
+    SYSTEM CONTROLLED STATUS
+    ========================================
+    */
+
+    const status = "Open";
+
+    /*
+    ========================================
+    CREATE INCIDENT
+    ========================================
+    */
 
     incidentModel.createIncident(
 
         title,
         location,
         description,
+        category,
+        severity,
+        status,
 
         (err, result) => {
 
             if (err) {
 
-                console.error(err.message);
+                console.error(
+                    err.message
+                );
 
                 return res.status(500).json({
-                    error: err.message
+
+                    error:
+                        "Failed to report incident"
+
                 });
 
             }
 
-            res.json({
+            res.status(201).json({
 
                 message:
                     "Incident reported successfully",
@@ -75,10 +110,15 @@ const getAllIncidents = (req, res) => {
 
             if (err) {
 
-                console.error(err.message);
+                console.error(
+                    err.message
+                );
 
                 return res.status(500).json({
-                    error: err.message
+
+                    error:
+                        "Failed to retrieve incidents"
+
                 });
 
             }

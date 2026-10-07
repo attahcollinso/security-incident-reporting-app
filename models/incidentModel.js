@@ -10,6 +10,9 @@ const createIncident = (
     title,
     location,
     description,
+    category,
+    severity,
+    status,
     callback
 ) => {
 
@@ -18,14 +21,24 @@ const createIncident = (
         (
             title,
             location,
-            description
+            description,
+            category,
+            severity,
+            status
         )
-        VALUES (?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?)
     `;
 
     db.run(
         sql,
-        [title, location, description],
+        [
+            title,
+            location,
+            description,
+            category,
+            severity,
+            status
+        ],
         function(err) {
 
             callback(err, this);

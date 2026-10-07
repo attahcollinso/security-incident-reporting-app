@@ -33,6 +33,8 @@
 
         <form id="incidentForm">
 
+            <!-- INCIDENT TITLE -->
+
             <input
                 type="text"
                 id="title"
@@ -40,12 +42,102 @@
                 required
             >
 
+            <!-- LOCATION -->
+
             <input
                 type="text"
                 id="location"
                 placeholder="Location"
                 required
             >
+
+            <!-- CATEGORY -->
+
+            <label for="category">
+                Incident Category
+            </label>
+
+            <select
+                id="category"
+                required
+            >
+
+                <option value="">
+                    Select Category
+                </option>
+
+                <option value="Theft">
+                    Theft
+                </option>
+
+                <option value="Trespassing">
+                    Trespassing
+                </option>
+
+                <option value="Vandalism">
+                    Vandalism
+                </option>
+
+                <option value="Assault">
+                    Assault
+                </option>
+
+                <option value="Fire">
+                    Fire
+                </option>
+
+                <option value="Accident">
+                    Accident
+                </option>
+
+                <option value="Unauthorized Access">
+                    Unauthorized Access
+                </option>
+
+                <option value="Suspicious Activity">
+                    Suspicious Activity
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+            <!-- SEVERITY -->
+
+            <label for="severity">
+                Severity
+            </label>
+
+            <select
+                id="severity"
+                required
+            >
+
+                <option value="">
+                    Select Severity
+                </option>
+
+                <option value="Low">
+                    Low
+                </option>
+
+                <option value="Medium">
+                    Medium
+                </option>
+
+                <option value="High">
+                    High
+                </option>
+
+                <option value="Critical">
+                    Critical
+                </option>
+
+            </select>
+
+            <!-- DESCRIPTION -->
 
             <textarea
                 id="description"

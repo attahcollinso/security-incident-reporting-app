@@ -52,7 +52,6 @@ HOME PAGE
 .coat {
 
     width: 100px;
-    /* height: auto; */
 
     margin-top: 1px;
 
@@ -137,18 +136,159 @@ FORM PAGE
 
     border-radius: 10px;
 
+    box-sizing: border-box;
+
 }
 
-input,
-textarea {
+/*
+========================================
+FORM HEADINGS
+========================================
+*/
 
-    width: 100%;
+.form-container h1 {
 
-    padding: 12px;
+    margin-top: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+/*
+========================================
+FORM LINK
+========================================
+*/
+
+.form-container a {
+
+    color: green;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+}
+
+.form-container a:hover {
+
+    text-decoration: underline;
+
+}
+
+/*
+========================================
+FORM LABELS
+========================================
+*/
+
+label {
+
+    display: block;
 
     margin-top: 15px;
 
+    margin-bottom: 8px;
+
+    font-weight: bold;
+
+    color: #333;
+
+}
+
+/*
+========================================
+FORM INPUTS
+========================================
+*/
+
+input,
+textarea,
+select {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 12px;
+
+    margin-top: 5px;
+
     margin-bottom: 20px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 1rem;
+
+    background: white;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+
+    outline: none;
+
+    border-color: green;
+
+}
+
+/*
+========================================
+TEXTAREA
+========================================
+*/
+
+textarea {
+
+    min-height: 150px;
+
+    resize: vertical;
+
+}
+
+/*
+========================================
+SELECT
+========================================
+*/
+
+select {
+
+    cursor: pointer;
+
+}
+
+/*
+========================================
+FORM BUTTON
+========================================
+*/
+
+.form-container button {
+
+    width: 100%;
+
+    margin: 10px 0;
+
+}
+
+/*
+========================================
+FORM MESSAGE
+========================================
+*/
+
+#message {
+
+    margin-top: 20px;
+
+    font-weight: bold;
 
 }
 
@@ -191,4 +331,5 @@ FOOTER
     margin-top: 0px;
 
     font-size: 0.9rem;
+
 }

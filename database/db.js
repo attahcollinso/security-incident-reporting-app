@@ -15,6 +15,12 @@ const db = new sqlite3.Database(
 
 db.serialize(() => {
 
+    /*
+    ========================================
+    CREATE INCIDENTS TABLE
+    ========================================
+    */
+
     db.run(`
         CREATE TABLE IF NOT EXISTS incidents (
 
@@ -26,10 +32,86 @@ db.serialize(() => {
 
             description TEXT NOT NULL,
 
-            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+            category TEXT DEFAULT 'Other',
 
+            severity TEXT DEFAULT 'Medium',
+
+            status TEXT DEFAULT 'Open',
+
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )
     `);
+
+    /*
+    ========================================
+    DATABASE MIGRATION
+    ========================================
+    */
+
+    db.all(
+        `PRAGMA table_info(incidents)`,
+        [],
+        (err, columns) => {
+
+            if (err) {
+
+                console.error(
+                    "Unable to inspect database:",
+                    err.message
+                );
+
+                return;
+            }
+
+            const columnNames =
+                columns.map(
+                    column => column.name
+                );
+
+            /*
+            Add category if it does not exist
+            */
+
+            if (!columnNames.includes("category")) {
+
+                db.run(`
+                    ALTER TABLE incidents
+                    ADD COLUMN category TEXT
+                    DEFAULT 'Other'
+                `);
+
+            }
+
+            /*
+            Add severity if it does not exist
+            */
+
+            if (!columnNames.includes("severity")) {
+
+                db.run(`
+                    ALTER TABLE incidents
+                    ADD COLUMN severity TEXT
+                    DEFAULT 'Medium'
+                `);
+
+            }
+
+            /*
+            Add status if it does not exist
+            */
+
+            if (!columnNames.includes("status")) {
+
+                db.run(`
+                    ALTER TABLE incidents
+                    ADD COLUMN status TEXT
+                    DEFAULT 'Open'
+                `);
+
+            }
+
+        }
+    );
 
 });
 

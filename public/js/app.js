@@ -20,50 +20,98 @@ if (form) {
             const title =
                 document.getElementById(
                     "title"
-                ).value;
+                ).value.trim();
 
             const location =
                 document.getElementById(
                     "location"
+                ).value.trim();
+
+            const category =
+                document.getElementById(
+                    "category"
+                ).value;
+
+            const severity =
+                document.getElementById(
+                    "severity"
                 ).value;
 
             const description =
                 document.getElementById(
                     "description"
-                ).value;
+                ).value.trim();
 
-            const response =
-                await fetch(
-                    "/api/incidents",
-                    {
-
-                        method: "POST",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body: JSON.stringify({
-
-                            title,
-                            location,
-                            description
-
-                        })
-
-                    }
+            const message =
+                document.getElementById(
+                    "message"
                 );
 
-            const data =
-                await response.json();
+            try {
 
-            document.getElementById(
-                "message"
-            ).innerText =
-                data.message;
+                const response =
+                    await fetch(
+                        "/api/incidents",
+                        {
 
-            form.reset();
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+
+                                title,
+                                location,
+                                category,
+                                severity,
+                                description
+
+                            })
+
+                        }
+                    );
+
+                const data =
+                    await response.json();
+
+                /*
+                ========================================
+                HANDLE SERVER ERRORS
+                ========================================
+                */
+
+                if (!response.ok) {
+
+                    message.innerText =
+                        data.error ||
+                        "Failed to report incident";
+
+                    return;
+
+                }
+
+                /*
+                ========================================
+                SUCCESS MESSAGE
+                ========================================
+                */
+
+                message.innerText =
+                    data.message;
+
+                form.reset();
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.innerText =
+                    "Unable to connect to the server.";
+
+            }
 
         }
     );
@@ -129,6 +177,21 @@ async function loadIncidents() {
                     <p>
                         <strong>Location:</strong>
                         ${incident.location}
+                    </p>
+
+                    <p>
+                        <strong>Category:</strong>
+                        ${incident.category}
+                    </p>
+
+                    <p>
+                        <strong>Severity:</strong>
+                        ${incident.severity}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        ${incident.status}
                     </p>
 
                     <p>
