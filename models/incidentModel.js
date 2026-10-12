@@ -74,9 +74,39 @@ const getAllIncidents = (callback) => {
 
 };
 
+/*
+========================================
+GET INCIDENT BY ID
+========================================
+*/
+
+const getIncidentById = (
+    id,
+    callback
+) => {
+
+    const sql = `
+        SELECT *
+        FROM incidents
+        WHERE id = ?
+    `;
+
+    db.get(
+        sql,
+        [id],
+        (err, row) => {
+
+            callback(err, row);
+
+        }
+    );
+
+};
+
 module.exports = {
 
     createIncident,
-    getAllIncidents
+    getAllIncidents,
+    getIncidentById
 
 };

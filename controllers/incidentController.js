@@ -131,9 +131,60 @@ const getAllIncidents = (req, res) => {
 
 };
 
+/*
+========================================
+GET INCIDENT BY ID
+========================================
+*/
+
+const getIncidentById = (req, res) => {
+
+    const { id } = req.params;
+
+    incidentModel.getIncidentById(
+
+        id,
+
+        (err, incident) => {
+
+            if (err) {
+
+                console.error(
+                    err.message
+                );
+
+                return res.status(500).json({
+
+                    error:
+                        "Failed to retrieve incident"
+
+                });
+
+            }
+
+            if (!incident) {
+
+                return res.status(404).json({
+
+                    error:
+                        "Incident not found"
+
+                });
+
+            }
+
+            res.json(incident);
+
+        }
+
+    );
+
+};
+
 module.exports = {
 
     createIncident,
-    getAllIncidents
+    getAllIncidents,
+    getIncidentById
 
 };

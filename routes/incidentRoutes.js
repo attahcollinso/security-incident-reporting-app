@@ -4,7 +4,8 @@ const router = express.Router();
 
 const {
     createIncident,
-    getAllIncidents
+    getAllIncidents,
+    getIncidentById
 } = require("../controllers/incidentController");
 
 /*
@@ -21,6 +22,11 @@ router.post(
 router.get(
     "/",
     getAllIncidents
+);
+
+router.get(
+    "/:id",
+    getIncidentById
 );
 
 module.exports = router;
