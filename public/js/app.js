@@ -117,7 +117,6 @@ if (form) {
     );
 
 }
-
 /*
 ========================================
 LOAD INCIDENTS
@@ -140,79 +139,100 @@ async function loadIncidents() {
                 "/api/incidents"
             );
 
+        if (!response.ok) {
+            throw new Error(
+                "Failed to retrieve incidents"
+            );
+        }
+
         const incidents =
             await response.json();
 
         list.innerHTML = "";
 
-        if (
-            incidents.length === 0
-        ) {
+        if (incidents.length === 0) {
 
-            list.innerHTML =
-                "<p>No incidents reported yet.</p>";
+            const emptyMessage =
+                document.createElement("p");
+
+            emptyMessage.textContent =
+                "No incidents reported yet.";
+
+            list.appendChild(emptyMessage);
 
             return;
 
         }
 
-        incidents.forEach(
-            (incident) => {
+        incidents.forEach((incident) => {
 
-                const card =
-                    document.createElement(
-                        "div"
-                    );
+            const card =
+                document.createElement("div");
 
-                card.classList.add(
-                    "card"
+            card.classList.add("card");
+
+            const title =
+                document.createElement("h2");
+
+            title.textContent =
+                incident.title;
+
+            card.appendChild(title);
+
+            const fields = [
+                ["Location", incident.location],
+                ["Category", incident.category || "Other"],
+                ["Severity", incident.severity || "Medium"],
+                ["Status", incident.status || "Open"],
+                ["Description", incident.description],
+                ["Date", incident.created_at]
+            ];
+
+            fields.forEach(([label, value]) => {
+
+                const paragraph =
+                    document.createElement("p");
+
+                const strong =
+                    document.createElement("strong");
+
+                strong.textContent = `${label}: `;
+
+                paragraph.appendChild(strong);
+
+                paragraph.appendChild(
+                    document.createTextNode(value ?? "")
                 );
 
-                card.innerHTML = `
+                card.appendChild(paragraph);
 
-                    <h2>
-                        ${incident.title}
-                    </h2>
+            });
 
-                    <p>
-                        <strong>Location:</strong>
-                        ${incident.location}
-                    </p>
+            const detailsLink =
+                document.createElement("a");
 
-                    <p>
-                        <strong>Category:</strong>
-                        ${incident.category}
-                    </p>
+            detailsLink.href =
+                `incident.html?id=${encodeURIComponent(incident.id)}`;
 
-                    <p>
-                        <strong>Severity:</strong>
-                        ${incident.severity}
-                    </p>
+            detailsLink.textContent =
+                "View Details";
 
-                    <p>
-                        <strong>Status:</strong>
-                        ${incident.status}
-                    </p>
+            detailsLink.classList.add(
+                "details-link"
+            );
 
-                    <p>
-                        ${incident.description}
-                    </p>
+            card.appendChild(detailsLink);
 
-                    <p>
-                        <strong>Date:</strong>
-                        ${incident.created_at}
-                    </p>
+            list.appendChild(card);
 
-                `;
+        });
 
-                list.appendChild(card);
+    } catch (error) {
 
-            }
-        );
+        console.error(error);
 
-    } catch(error) {
-
-        console.log(error);
+        list.innerHTML =
+            "<p>Unable to load incidents. Please try again.</p>";
 
     }
 
