@@ -5,7 +5,8 @@ const router = express.Router();
 const {
     createIncident,
     getAllIncidents,
-    getIncidentById
+    getIncidentById,
+    updateIncidentStatus
 } = require("../controllers/incidentController");
 
 /*
@@ -27,6 +28,11 @@ router.get(
 router.get(
     "/:id",
     getIncidentById
+);
+
+router.patch(
+    "/:id/status",
+    updateIncidentStatus
 );
 
 module.exports = router;

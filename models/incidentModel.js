@@ -103,10 +103,42 @@ const getIncidentById = (
 
 };
 
+
+/*
+========================================
+UPDATE INCIDENT STATUS
+========================================
+*/
+
+const updateIncidentStatus = (
+    id,
+    status,
+    callback
+) => {
+
+    const sql = `
+        UPDATE incidents
+        SET status = ?
+        WHERE id = ?
+    `;
+
+    db.run(
+        sql,
+        [status, id],
+        function(err) {
+
+            callback(err, this);
+
+        }
+    );
+
+};
+
 module.exports = {
 
     createIncident,
     getAllIncidents,
-    getIncidentById
+    getIncidentById,
+    updateIncidentStatus
 
 };

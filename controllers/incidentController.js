@@ -181,10 +181,98 @@ const getIncidentById = (req, res) => {
 
 };
 
+
+/*
+========================================
+UPDATE INCIDENT STATUS
+========================================
+*/
+
+const updateIncidentStatus = (req, res) => {
+
+    const { id } = req.params;
+    const { status } = req.body || {};
+
+    const allowedStatuses = [
+        "Open",
+        "In Progress",
+        "Resolved"
+    ];
+
+    if (
+        !/^[1-9]\d*$/.test(id) ||
+        !Number.isSafeInteger(Number(id))
+    ) {
+
+        return res.status(400).json({
+            error: "Invalid incident ID"
+        });
+
+    }
+
+    /*
+    ========================================
+    VALIDATE STATUS
+    ========================================
+    */
+
+    if (!allowedStatuses.includes(status)) {
+
+        return res.status(400).json({
+            error:
+                "Invalid status. Allowed values are Open, In Progress, and Resolved."
+        });
+
+    }
+
+    /*
+    ========================================
+    UPDATE STATUS
+    ========================================
+    */
+
+    incidentModel.updateIncidentStatus(
+        id,
+        status,
+        (err, result) => {
+
+            if (err) {
+
+                console.error(err.message);
+
+                return res.status(500).json({
+                    error:
+                        "Failed to update incident status"
+                });
+
+            }
+
+            if (result.changes === 0) {
+
+                return res.status(404).json({
+                    error:
+                        "Incident not found"
+                });
+
+            }
+
+            res.json({
+                message:
+                    "Incident status updated successfully",
+                incidentId: Number(id),
+                status
+            });
+
+        }
+    );
+
+};
+
 module.exports = {
 
     createIncident,
     getAllIncidents,
-    getIncidentById
+    getIncidentById,
+    updateIncidentStatus
 
 };
